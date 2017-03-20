@@ -13,7 +13,7 @@
     "contributes": {
         "commands": [
             {
-                "command": "crazy.pushDiagnostics",
+                "command": "crazy.floodDiagnostics",
                 "title": "Crazy: Flood Diagnostics"
             },
             {
@@ -29,12 +29,24 @@
                 "title": "Crazy: Flood Two Output Channels At The Same Time"
             },
             {
+                "command": "crazy.clearOutputs",
+                "title": "Crazy: Clear All Output Channels"
+            },
+            {
                 "command": "crazy.floodTenTerminals",
                 "title": "Crazy: Flood Ten Terminals With Output At The Same Time"
             },
             {
                 "command": "crazy.closeTerminals",
                 "title": "Crazy: Close All Terminals"
+            },
+            {
+                "command": "crazy.floodWithExceptions",
+                "title": "Crazy: Flood Core With Exceptions From Extension"
+            },
+            {
+                "command": "crazy.floodAllAtOnce",
+                "title": "Crazy: Flood Core with Everything At Once"
             }
         ]
     },
