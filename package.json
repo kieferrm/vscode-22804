@@ -14,7 +14,11 @@
         "commands": [
             {
                 "command": "crazy.floodDiagnostics",
-                "title": "Crazy: Flood Diagnostics"
+                "title": "Crazy: Flood Problems View"
+            },
+            {
+                "command": "crazy.floodFileDiagnostics",
+                "title": "Crazy: Flood Problems View with Files"
             },
             {
                 "command": "crazy.clearDiagnostics",
