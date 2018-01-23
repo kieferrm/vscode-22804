@@ -8,8 +8,7 @@ export function compute(context: vscode.ExtensionContext) {
     console.log(file);
     const cmd = `node ${file}`;
     try {
-        let jsonString = cp.execSync(cmd, { encoding: 'ascii' });
-        JSON.parse(jsonString);
+        let jsonString = cp.exec(cmd, (error, stdout, stderr) => {});
     } catch (err) {
         console.error(err);
     }
