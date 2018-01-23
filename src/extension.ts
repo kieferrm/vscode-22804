@@ -1,5 +1,6 @@
 'use strict';
 import * as vscode from 'vscode';
+import * as expensive from './expensive';
 
 
 const NUMBER_OF_ERRORS_LARGE = 5000;
@@ -180,6 +181,11 @@ export function activate(context: vscode.ExtensionContext) {
         setTimeout(throwExceptions, 10);
         setTimeout(floodDiagnostics, 10);
         setTimeout(floodOneChannel, 10);
+    });
+    context.subscriptions.push(disposable);
+
+    disposable = vscode.commands.registerCommand('crazy.monopolizeExtensionHost', () => {
+        expensive.compute();
     });
     context.subscriptions.push(disposable);
 }
