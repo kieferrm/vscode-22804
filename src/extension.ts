@@ -1,6 +1,7 @@
 'use strict';
 import * as vscode from 'vscode';
 import * as expensive from './expensive';
+import * as external from './external';
 
 
 const NUMBER_OF_ERRORS_LARGE = 5000;
@@ -73,10 +74,10 @@ export function activate(context: vscode.ExtensionContext) {
 
     function floodDiagnostics(editor: vscode.TextEditor = vscode.window.activeTextEditor, numberOfErrors: number = NUMBER_OF_ERRORS_LARGE, numberOfFiles: number = 1) {
         if (editor) {
-            let source = `crazy-${Date.now()}`;            
+            let source = `crazy-${Date.now()}`;
             let diagnosticCollection: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(source);
             diagnosticCollections.push(diagnosticCollection);
-            
+
             let basicUri = editor.document.uri;
             let basicPath = basicUri.path;
             basicPath = basicPath.slice(0, basicPath.lastIndexOf('/'));
@@ -92,7 +93,7 @@ export function activate(context: vscode.ExtensionContext) {
                     diagnosticCollection.set(uri, diagnostics); // this call is intentionally inside the loop to simulate a programming error
                 }
             }
-        }    
+        }
     }
 
 
@@ -115,7 +116,7 @@ export function activate(context: vscode.ExtensionContext) {
             let numberOfFiles = NUMBER_OF_FILES;
             vscode.commands.executeCommand('workbench.action.output.toggleOutput')
                 .then(() => vscode.commands.executeCommand('workbench.actions.view.problems'))
-                .then(() => vscode.window.showInputBox({ value: NUMBER_OF_FILES.toString(), prompt: 'Number of files with errors'}))
+                .then(() => vscode.window.showInputBox({ value: NUMBER_OF_FILES.toString(), prompt: 'Number of files with errors' }))
                 .then(value => numberOfFiles = parseInt(value))
                 .then(() => vscode.window.showInputBox({ value: NUMBER_OF_ERRORS_SMALL.toString(), prompt: 'Number of errors per file' }))
                 .then(value => parseInt(value))
@@ -184,8 +185,15 @@ export function activate(context: vscode.ExtensionContext) {
     });
     context.subscriptions.push(disposable);
 
-    disposable = vscode.commands.registerCommand('crazy.monopolizeExtensionHost', () => {
+
+    disposable = vscode.commands.registerCommand('crazy.createExtensionHostLoad', () => {
         expensive.compute();
+    });
+    context.subscriptions.push(disposable);
+
+
+    disposable = vscode.commands.registerCommand('crazy.createExternalProcessLoad', () => {
+        external.compute(context);
     });
     context.subscriptions.push(disposable);
 }

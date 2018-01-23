@@ -1,11 +1,11 @@
 
 
-function primes(max: number) : number[] {
-    const sieve : boolean[] = [];
-    let index = max -1;
-    while(index--) sieve[index] = true;
-    
-    for(index = 2; index < max; index++) {
+function primes(max: number): number[] {
+    const sieve: boolean[] = [];
+    let index = max - 1;
+    while (index--) sieve[index] = true;
+
+    for (index = 2; index < max; index++) {
         // optimization
         // if (!sieve[index]) {
         //     continue;
@@ -17,7 +17,7 @@ function primes(max: number) : number[] {
         }
     }
 
-    let result : number[] = [];
+    let result: number[] = [];
     for (index = 2; index < max; index++) {
         if (sieve[index]) {
             result.push(index);
@@ -26,11 +26,11 @@ function primes(max: number) : number[] {
     return result;
 }
 
-function factorization(n : number): number[] {
+function factorization(n: number): number[] {
     if (n == 2) {
         return [2];
     }
-    let result : number[] = [];
+    let result: number[] = [];
     // optimization
     // for (let factor = 2; factor < Math.sqrt(n); factor++) {
     for (let factor = 2; factor < n; factor++) {
@@ -45,14 +45,14 @@ function factorization(n : number): number[] {
     return result;
 }
 
-function isPrime(prime : number) : boolean {
+function isPrime(prime: number): boolean {
     let f = factorization(prime);
     return f.length == 1 && f[0] == prime;
 }
 
 
 const MAX = 500000;
-export function compute() : number[] {
+export function compute(): number[] {
     let falsePrimes = [];
     let p = primes(MAX);
     for (let i = 0; i < p.length; i++) {
@@ -60,10 +60,10 @@ export function compute() : number[] {
             falsePrimes.push(p[i]);
         }
     }
-    return falsePrimes.length == 0 ? p: falsePrimes;
+    return falsePrimes.length == 0 ? p : falsePrimes;
 }
 
 
-export function computeJson() : string {
+export function computeJson(): string {
     return JSON.stringify(compute());
 }

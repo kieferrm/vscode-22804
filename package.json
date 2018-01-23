@@ -56,8 +56,12 @@
                 "title": "Crazy: Flood Core with Everything At Once"
             },
             {
-                "command": "crazy.monopolizeExtensionHost",
-                "title": "Crazy: Monopolize Extension Host"
+                "command": "crazy.createExtensionHostLoad",
+                "title": "Crazy: Create Extension Host Load"
+            },
+            {
+                "command": "crazy.createExternalProcessLoad",
+                "title": "Crazy: Create External Process Load"
             }
         ]
     },
